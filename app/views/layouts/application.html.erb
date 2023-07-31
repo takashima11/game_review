@@ -11,6 +11,61 @@
   </head>
 
   <body>
+    <header>
+      <div class="container">
+        <nav class="navbar navbar-bottom pb-5 mb-4 border-bottom">
+          <h4 class="pl-3 pr-3 border border-dark mt-5">game_review</h4>
+
+          <ul class="navbar-nav ml-auto">
+            <form class="form-inline">
+              <% if admin_signed_in? %>
+                <% if request.fullpath.include? "/admin" %>
+                  <li class="nav-item ml-5">
+                    <%= link_to "ゲーム一覧",admin_games_path, class: "btn btn-sm btn-outline-secondary" %>
+                  </li>
+                  <li class="nav-item ml-5">
+                    <%= link_to "会員一覧", admin_customers_path, class: "btn btn-sm btn-outline-secondary" %>
+                  </li>
+                  <li class="nav-item ml-5">
+                    <%= link_to "レビュー履歴一覧", admin_root_path, class: "btn btn-sm btn-outline-secondary" %>
+                  </li>
+                  <li class="nav-item ml-5">
+                    <%= link_to "ろぐあうと", destroy_admin_session_path, method: :delete, class: "btn btn-sm btn-outline-secondary" %>
+                  </li>
+                <% else %>
+                  <li class="nav-item ml-5">
+                    <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "btn btn-sm btn-outline-secondary" %>
+                  </li>
+                <% end %>
+              <% elsif customer_signed_in? %>
+                <li class="nav-item ml-5">
+                  <%= link_to "マイページ", current_customer_show_path(current_customer.id), class: "btn btn-sm btn-outline-secondary" %>
+                </li>
+                <li class="nav-item ml-5">
+                  <%= link_to "ゲーム一覧", games_path, class: "btn btn-sm btn-outline-secondary" %>
+                </li>
+                <li class="nav-item ml-5">
+                  <%= link_to "ログアウト", destroy_customer_session_path, method: :delete,class: "btn btn-sm btn-outline-secondary" %>
+                </li>
+              <% else %>
+                <li class="nav-item ml-5">
+                  <%= link_to "About", about_path, class: "btn btn-sm btn-outline-secondary" %>
+                </li>
+                <li class="nav-item ml-5">
+                  <%= link_to "ゲーム一覧", games_path, class: "btn btn-sm btn-outline-secondary" %>
+                </li>
+                <li class="nav-item ml-5">
+                  <%= link_to "新規登録", new_customer_registration_path, class: "btn btn-sm btn-outline-secondary" %>
+                </li>
+                <li class="nav-item ml-5">
+                  <%= link_to "ログイン", new_customer_session_path, class: "btn btn-sm btn-outline-secondary" %>
+                </li>
+              <% end %>
+            </form>
+          </ul>
+        </nav>
+      </div>
+    </header>
     <%= yield %>
   </body>
 </html>
