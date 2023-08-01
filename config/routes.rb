@@ -25,7 +25,10 @@ Rails.application.routes.draw do
 
     get 'current_customer/show' => 'customers#show'
     get 'current_customer/information/edit' => 'customers#edit'
+    patch 'current_customer/show' => "customers#update"
+    put 'current_customer/show' => "customers#update"
     get 'current_customer/unsubscribe' => 'customers#unsubscribe',as: 'unsubscribe'
+    patch 'current_customer/withdrawal' => 'customers#withdrawal',as: 'withdrawal'
 
     get 'posts/new' => 'posts#new'
     get 'posts' => 'posts#index'

@@ -31,12 +31,12 @@
       <p><%= f.text_field :last_name_kana %></p>
       <p><%= f.email_field :email, autofocus: true, autocomplete: "email" %></p>
       <p><%= f.text_field :nickname %></p>
-      <p><%= f.date_select :birthday, {start_year: 1920, end_year: 2023,
+      <p><%= f.date_select :date_of_birth, {start_year: 1920, end_year: 2023,
           include_blank: true, use_two_digit_numbers: true},
           {class: "input-tab birthday-select"}%></p>
       <p><div class="form-group">
-          <%= f.label :sex, '性別' %>
-          <%= f.select :sex, {'男性': 1, '女性': 2}, { include_blank: '選択してください'}, { class: 'form-control' , required: true } %>
+          <%= f.label :gender, '性別' %>
+          <%= f.select :gender, {'男性': 1, '女性': 2}, { include_blank: '選択してください'}, { class: 'form-control' , required: true } %>
         </div></p>
       <!--<%# if @minimum_password_length %>-->
       <!--<em>(<%#= @minimum_password_length %> characters minimum)</em>-->

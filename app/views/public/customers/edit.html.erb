@@ -1,2 +1,52 @@
-<h1>Public::Customers#edit</h1>
-<p>Find me in app/views/public/customers/edit.html.erb</p>
+<div class="container">
+  <h1>会員情報編集</h1>
+  <div class="row">
+
+  </div>
+
+  <div class="row">
+    <%= form_with model: @customer, url: current_customer_show_path do |f| %>
+      <table class="table table-borderless">
+        <tbody>
+          <tr>
+            <th><%= "氏名" %></th>
+            <td><%= f.text_field :last_name %></td>
+            <td><%= f.text_field :first_name %></td>
+          </tr>
+          <tr>
+            <th><%= "フリガナ" %></th>
+            <td><%= f.text_field :last_name_kana %></td>
+            <td><%= f.text_field :first_name_kana %></td>
+          </tr>
+          <tr>
+            <th><%= "ニックネーム" %></th>
+            <td><%= f.text_field :nickname %></td>
+          </tr>
+          <tr>
+            <th><%= "生年月日" %></th>
+            <td><p><%= f.date_select :date_of_birth, {start_year: 1920, end_year: 2023,
+                  include_blank: true, use_two_digit_numbers: true},
+                  {class: "input-tab birthday-select"}%></p>
+          </tr>
+          <tr>
+            <th><%= "性別" %></th>
+            <td><p><div class="form-group">
+                <%= f.label :gender, '性別' %>
+                <%= f.select :gender, {'男性': 1, '女性': 2}, { include_blank: '選択してください'}, { class: 'form-control' , required: true } %>
+              </div></p></td>
+          </tr>
+          <tr>
+            <th><%= "メールアドレス" %></th>
+            <td><%= f.email_field :email %></td>
+          </tr>
+          <tr>
+            <th><%= f.submit "編集内容を保存", class: "btn btn-success" %></th>
+            <th><%= link_to "退会する", unsubscribe_path, class: "btn btn-danger" %></th>
+          </tr>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
+</div>
+
+

@@ -1,2 +1,43 @@
-<h1>Public::Customers#show</h1>
-<p>Find me in app/views/public/customers/show.html.erb</p>
+<div class="container">
+  <h1>マイページ</h1>
+  <div class="row">
+    <p>登録情報</p>
+    <p class="ml-3">
+      <%= link_to "編集する",current_customer_information_edit_path, class: "btn btn-success btn-sm" %>
+    </p>
+  </div>
+
+  <div class="row">
+    <div class="col-6 pl-0">
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <th><%= "氏名" %></th>
+            <th><%= @customer.last_name %><%= @customer.first_name %></th>
+          </tr>
+          <tr>
+            <th><%= "カナ" %></th>
+            <th><%= @customer.last_name_kana %><%= @customer.first_name %></th>
+          </tr>
+          <tr>
+            <th><%= "ニックネーム" %></th>
+            <th><%= @customer.nickname %></th>
+          </tr>
+          <tr>
+            <th><%= "生年月日" %></th>
+            <th><%= @customer.date_of_birth %></th>
+          </tr>
+          <tr>
+            <th><%= "性別" %></th>
+            <th><%= @customer.gender %></th>
+          </tr>
+          <tr>
+            <th><%= "メールアドレス" %></th>
+            <th><%= @customer.email %></th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
