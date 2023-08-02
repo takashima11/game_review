@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_28_134402) do
+ActiveRecord::Schema.define(version: 2023_08_02_135732) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -91,9 +91,9 @@ ActiveRecord::Schema.define(version: 2023_07_28_134402) do
 
   create_table "jenres", force: :cascade do |t|
     t.string "jenre_name", null: false
-    t.string "model_name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "game_console", null: false
   end
 
   create_table "posts", force: :cascade do |t|
