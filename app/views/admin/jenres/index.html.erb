@@ -8,7 +8,7 @@
         <%= f.text_field :jenre_name %>
         <%= f.submit '新規登録' %></p>
       </div>
-      
+
       <div class="col">
         <p>機種名
         <%= f.text_field :game_console %>
@@ -30,7 +30,7 @@
           <% @jenres.each do |jenre| %>
             <tr>
               <td><%= jenre.jenre_name %></td>
-              <td><%= link_to "編集する", edit_admin_jenre_path(@jenre.id), class: "btn btn-success" %></td>
+              <td><%= link_to "編集する", edit_admin_jenre_path(jenre.id), class: "btn btn-success" %></td>
             </tr>
           <% end %>
         </tbody>
@@ -46,10 +46,10 @@
         </thead>
 
         <tbody>
-          <% @jenres.each do |jenre| %>
+          <% @jenres_b.each do |jenre| %>
             <tr>
               <td><%= jenre.game_console %></td>
-              <td><%= link_to "編集する", edit_admin_jenre_path(@jenre.id), class: "btn btn-success" %></td>
+              <td><%= link_to "編集する", edit_admin_jenre_path(@jenres.ids), class: "btn btn-success" %></td>
             </tr>
           <% end %>
         </tbody>

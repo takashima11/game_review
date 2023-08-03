@@ -2,6 +2,8 @@ class Admin::JenresController < ApplicationController
   def index
     @jenre = Jenre.new
     @jenres = Jenre.all
+    @jenres_a = Jenre.select(:jenre_name)
+    @jenres_b = Jenre.select(:game_console)
   end
 
   def create
@@ -12,12 +14,13 @@ class Admin::JenresController < ApplicationController
 
   def edit
     @jenre = Jenre.find(params[:id])
+    # @jenres_a = Jenre.select(:jenre_name)
   end
 
   def update
     @jenre = Jenre.find(params[:id])
-    @uenre.update(jenre_params)
-    redirect_to admin_jenres_path
+    @jenre.update(jenre_params)
+    redirect_to edit_admin_jenre_path
   end
 
   private

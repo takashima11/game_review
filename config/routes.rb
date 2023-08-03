@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :games, only: [:index, :new, :show, :edit]
     resources :customers, only: [:index, :show, :edit]
     resources :posts, only: [:show]
-    resources :jenres, only: [:index, :create, :edit]
+    resources :jenres, only: [:index, :create, :edit, :update]
   end
 
   scope module: :public do

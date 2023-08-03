@@ -1,2 +1,20 @@
-<h1>Admin::Jenres#edit</h1>
-<p>Find me in app/views/admin/jenres/edit.html.erb</p>
+<div class="container">
+  <h1>ジャンル編集</h1>
+  <div class="row">
+    <%= form_with model: @jenre, url: admin_jenre_path do |f| %>
+    <p>ジャンル名</p>
+    <%= f.text_field :jenre_name %>
+    <%= f.submit '変更を保存する', class: "btn btn-success" %>
+    <% end %>
+  </div>
+
+  <div class="row">
+    <%= form_with model: @jenre, url: admin_jenre_path do |f| %>
+    <p>機種名</p>
+    <%= f.text_field :game_console %>
+    <%= f.submit '変更を保存する', class: "btn btn-success" %>
+    <% end %>
+  </div>
+</div>
+
+
