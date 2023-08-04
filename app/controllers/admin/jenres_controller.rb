@@ -4,6 +4,7 @@ class Admin::JenresController < ApplicationController
     @jenres = Jenre.all
     @jenres_a = Jenre.select(:jenre_name)
     @jenres_b = Jenre.select(:game_console)
+    @jenres1 = Jenre.pluck(:jenre_name)
   end
 
   def create

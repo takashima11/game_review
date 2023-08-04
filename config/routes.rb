@@ -8,9 +8,13 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'
   }
 
+  devise_scope :customer do
+    post 'customers/guest_sign_in', to: 'customers/sessions#new_guest'
+  end
+
   namespace :admin do
     root to: 'homes#top'
-    resources :games, only: [:index, :new, :show, :edit]
+    resources :games, only: [:index, :new, :show, :edit, :create, :update]
     resources :customers, only: [:index, :show, :edit]
     resources :posts, only: [:show]
     resources :jenres, only: [:index, :create, :edit, :update]
@@ -31,6 +35,7 @@ Rails.application.routes.draw do
     patch 'current_customer/withdrawal' => 'customers#withdrawal',as: 'withdrawal'
 
     get 'posts/new' => 'posts#new'
+    post 'posts' => 'posts#create'
     get 'posts' => 'posts#index'
     get 'posts/:id' => 'posts#show',as: 'posts/show'
   end

@@ -28,10 +28,10 @@
 
         <tbody>
           <% @jenres.each do |jenre| %>
-            <tr>
-              <td><%= jenre.jenre_name %></td>
-              <td><%= link_to "編集する", edit_admin_jenre_path(jenre.id), class: "btn btn-success" %></td>
-            </tr>
+              <tr>
+                <td><%= jenre.jenre_name %></td>
+                <td><%= link_to "編集する", edit_admin_jenre_path(jenre.id), class: "btn btn-success" %></td>
+              </tr>
           <% end %>
         </tbody>
       </table>

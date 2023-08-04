@@ -1,3 +1,6 @@
 class Game < ApplicationRecord
-  belongs_to :game
+  has_one_attached :image
+  belongs_to :jenre
+  has_many :posts, dependent: :destroy
+
 end

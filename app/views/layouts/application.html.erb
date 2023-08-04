@@ -63,6 +63,7 @@
                 <li class="nav-item ml-5">
                   <%= link_to "ログイン", new_customer_session_path, class: "btn btn-sm btn-outline-secondary" %>
                 </li>
+                <li><%= link_to 'ゲストログイン（閲覧用）', customers_guest_sign_in_path, method: :post, class: "login" %></li>
               <% end %>
             </form>
           </ul>
