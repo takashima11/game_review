@@ -9,13 +9,13 @@ Rails.application.routes.draw do
   }
 
   devise_scope :customer do
-    post 'customers/guest_sign_in', to: 'customers/sessions#new_guest'
+    post 'customers/guest_sign_in', to: 'public/sessions#new_guest'
   end
 
   namespace :admin do
     root to: 'homes#top'
     resources :games, only: [:index, :new, :show, :edit, :create, :update]
-    resources :customers, only: [:index, :show, :edit]
+    resources :customers, only: [:index, :show, :edit, :update]
     resources :posts, only: [:show]
     resources :jenres, only: [:index, :create, :edit, :update]
   end
