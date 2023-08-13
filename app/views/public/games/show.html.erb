@@ -1,2 +1,24 @@
 <h1>Public::Games#show</h1>
 <p>Find me in app/views/public/games/show.html.erb</p>
+
+<%= @game.inspect %>
+
+<%= link_to "戻る", request.referer %>
+
+<%= form_with model: @post, local: true do |f| %>
+  body: <%= f.text_area :body %><br>
+  star: <%= f.text_field :star %><br>
+  
+  <%= f.hidden_field :title, value: @game.title %>
+  <%= f.hidden_field :item_caption, value: @game.item_caption %>
+  <%= f.hidden_field :labal, value: @game.label %>
+  <%= f.hidden_field :jan, value: @game.jan %>
+  <%= f.hidden_field :hardware, value: @game.hardware %>
+  <%= f.hidden_field :item_url, value: @game.item_url %>
+  <%= f.hidden_field :image_url, value: @game.image_url %>
+  <%= f.hidden_field :sales_date, value: @game.sales_date %>
+  
+  <%= f.submit "review" %>
+<% end %>
+
+<%= @posts.inspect %>

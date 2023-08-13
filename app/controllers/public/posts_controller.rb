@@ -4,9 +4,20 @@ class Public::PostsController < ApplicationController
   end
 
   def create
-    post = Post.new(post_params)
-    post.save
-    redirect_to posts_path
+    @game = Game.find_or_initialize_by(jan: game_params[:jan])
+    if @game.new_record?
+      @game.assign_attributes(game_params)
+      @game.save!
+    end
+    @post = current_customer.posts.build(post_params.merge(game_id: @game.id))
+    if @post.save
+      flash[:notice] = "success"
+      redirect_to posts_path
+    else
+      @posts = @game.posts
+      flash.now[:alert] = "failed"
+      render 'public/games/show'
+    end
   end
 
   def index
@@ -21,5 +32,9 @@ class Public::PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:body, :star)
+  end
+  
+  def game_params
+    params.require(:post).permit(:title, :item_caption, :label, :jan, :hardware, :item_url, :image_url, :sales_date)
   end
 end

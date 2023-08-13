@@ -1,0 +1,13 @@
+<div class = "search-box" >
+  <%= form_with url: games_search_path, method: :get, local: true do |f| %>
+    <div class = "form-group" >
+      <%= f.text_field :keyword, class: "form-control" %>
+      <%= f.submit 'ゲームタイトルを検索', class: "form-control btn btn-success" %>
+    </div>
+  <% end %>
+  <% if @games_all.any? %>
+      <%= render 'public/games/game', games: @games_all %>
+  <% elsif !@games_all.any? && params[:keyword].present? %>
+      検索結果は見つかりませんでした
+  <% end %>
+</div>

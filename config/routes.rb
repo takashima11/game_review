@@ -24,8 +24,11 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     get '/about' => 'homes#about',as: 'about'
 
-    get 'games' => 'games#index'
+    get 'games/search' => "games#search"
+    resources :games, only: %i[show], params: :item_code
+    # get 'games' => 'games#index'
     get 'games/:id' => 'games#show',as: 'games/show'
+
 
     get 'current_customer/show' => 'customers#show'
     get 'current_customer/information/edit' => 'customers#edit'
@@ -38,6 +41,9 @@ Rails.application.routes.draw do
     post 'posts' => 'posts#create'
     get 'posts' => 'posts#index'
     get 'posts/:id' => 'posts#show',as: 'posts/show'
+
+
+
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

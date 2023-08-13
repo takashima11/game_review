@@ -1,0 +1,36 @@
+<table class='table table-hover table-inverse'>
+  <thead>
+    <tr>
+      <th>タイトル</th>
+      <!--<th>対応機種</th>-->
+      <!--<th>説明文</th>-->
+      <th></th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @games_all.each do |game| %>
+      <tr>
+        <td><%= link_to game.title.truncate(20), game.item_url %></td>
+        <td><%= game.label %></td>
+        <td><%= game.hardware %></td>
+        <td><%= image_tag(game.image_url + "?_ex=60x60") %></td>
+        <td><%= game.sales_date %></td>
+        <td>
+          <%= form_with model: game, url: game_path(0), method: :get, local: true do |f| %>
+            <%= f.hidden_field :title %>
+            <%= f.hidden_field :item_caption %>
+            <%= f.hidden_field :labal %>
+            <%= f.hidden_field :jan %>
+            <%= f.hidden_field :hardware %>
+            <%= f.hidden_field :item_url %>
+            <%= f.hidden_field :image_url %>
+            <%= f.hidden_field :sales_date %>
+            <%= f.submit "詳細" %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

@@ -109,19 +109,24 @@ ActiveRecord::Schema.define(version: 2023_08_04_125943) do
   end
 
   create_table "games", force: :cascade do |t|
-    t.integer "jenre_id", null: false
-    t.string "name", null: false
-    t.text "introduction", null: false
-    t.date "release_date", null: false
+    t.integer "jenre_id"
+    t.string "title"
+    t.text "item_caption"
+    t.string "label"
+    t.string "jan"
+    t.string "hardware"
+    t.string "item_url"
+    t.string "image_url"
+    t.string "sales_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "jenres", force: :cascade do |t|
     t.string "jenre_name", null: false
+    t.string "game_console", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "game_console", null: false
   end
 
   create_table "posts", force: :cascade do |t|
