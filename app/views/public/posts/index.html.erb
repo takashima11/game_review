@@ -5,6 +5,8 @@
       <%= post.inspect %><br>
       <%= post.game.inspect %><br>
       <hr>
+
+      <%= link_to post.game.title, post_path(post.id) %>
     <% end %>
   </div>
 </div>

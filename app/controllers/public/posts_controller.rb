@@ -26,6 +26,8 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @comments = @post.comments
+    @comment = current_customer.comments.new
   end
 
   private
@@ -33,7 +35,7 @@ class Public::PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:body, :star)
   end
-  
+
   def game_params
     params.require(:post).permit(:title, :item_caption, :label, :jan, :hardware, :item_url, :image_url, :sales_date)
   end

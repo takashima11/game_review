@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     resources :games, only: %i[show], params: :item_code
     # get 'games' => 'games#index'
     get 'games/:id' => 'games#show',as: 'games/show'
+    # resources :games, only: [:show, :create]
 
 
     get 'current_customer/show' => 'customers#show'
@@ -37,10 +38,13 @@ Rails.application.routes.draw do
     get 'current_customer/unsubscribe' => 'customers#unsubscribe',as: 'unsubscribe'
     patch 'current_customer/withdrawal' => 'customers#withdrawal',as: 'withdrawal'
 
-    get 'posts/new' => 'posts#new'
-    post 'posts' => 'posts#create'
-    get 'posts' => 'posts#index'
-    get 'posts/:id' => 'posts#show',as: 'posts/show'
+    # get 'posts/new' => 'posts#new'
+    # post 'posts' => 'posts#create'
+    # get 'posts' => 'posts#index'
+    # get 'posts/:id' => 'posts#show',as: 'posts/show'
+    resources :posts, only: [:new, :create, :index, :show] do
+      resources :comments, only: [:create]
+    end
 
 
 

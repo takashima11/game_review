@@ -5,10 +5,17 @@
 
 <%= link_to "戻る", request.referer %>
 
+<%= @game.title %>
+<%= @game.item_caption %>
+<%= @game.label %>
+<%= @game.hardware %>
+<%= @game.sales_date %>
+<%= image_tag(@game.image_url + "?_ex=60x60") %>
+
 <%= form_with model: @post, local: true do |f| %>
   body: <%= f.text_area :body %><br>
   star: <%= f.text_field :star %><br>
-  
+
   <%= f.hidden_field :title, value: @game.title %>
   <%= f.hidden_field :item_caption, value: @game.item_caption %>
   <%= f.hidden_field :labal, value: @game.label %>
@@ -17,7 +24,7 @@
   <%= f.hidden_field :item_url, value: @game.item_url %>
   <%= f.hidden_field :image_url, value: @game.image_url %>
   <%= f.hidden_field :sales_date, value: @game.sales_date %>
-  
+
   <%= f.submit "review" %>
 <% end %>
 

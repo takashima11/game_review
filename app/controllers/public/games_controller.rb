@@ -45,9 +45,24 @@ class Public::GamesController < ApplicationController
     @post = Post.new
     @posts = @game.posts
   end
-  
+
+  # def create
+  #   post = Post.new(post_params)
+  #   post.customer_id = current_customer.id
+  #   post.game_id = game.id
+  #   # post.save!
+  #   # redirect_to posts_path
+  #   @book.user_id = current_user.id
+  #     if @post.save
+  #       redirect_to post_path, notice: "You have created book successfully."
+  #     else
+  #       @posts = Posy.all
+  #       render 'show'
+  #     end
+  # end
+
   private
-  
+
   def game_params
     params.require(:game).permit(:title, :item_caption, :label, :jan, :hardware, :item_url, :image_url, :sales_date)
   end
