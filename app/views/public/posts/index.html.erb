@@ -1,13 +1,44 @@
 <div class="container">
   <h1>投稿一覧</h1>
   <div class="row">
-    <% @posts.each do |post| %>
-      <%= post.inspect %><br>
-      <%= post.game.inspect %><br>
-      <hr>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>タイトル</th>
+          <th>評価</th>
+          <th>投稿者</th>
+        </tr>
+      </thead>
 
-      <%= link_to post.game.title, post_path(post.id) %>
-    <% end %>
+      <tbody>
+      <% @posts.each do |post| %>
+        <%#= post.inspect %><br>
+        <%#= post.game.inspect %><br>
+        <hr>
+
+        <tr>
+          <td><%= link_to post.game.title.truncate(20), post_path(post.id) %></td>
+          <td><div id="star-rate<%= post.id%>"></div></td>
+          <script>
+            $('#star-rate<%= post.id %>').empty();
+            var elem<%= post.id %> = document.querySelector('#star-rate<%= post.id %>');
+            var opt<%= post.id %> = {
+              size:    36,
+              starOn: "<%= asset_path('star-on.png') %>",
+              starOff: "<%= asset_path('star-off.png') %>",
+             half:      false,
+              score: <%= post.star %>,
+              readOnly: true
+            };
+            raty(elem<%= post.id %>, opt<%= post.id %>);
+          </script>
+
+          <td><%= post.customer.nickname %></td>
+        </tr>
+
+      <% end %>
+      </tbody>
+    </table>
   </div>
 </div>
 

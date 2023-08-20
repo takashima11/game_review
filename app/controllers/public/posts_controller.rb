@@ -22,6 +22,8 @@ class Public::PostsController < ApplicationController
 
   def index
     @posts = Post.all
+    @customers = Customer.all
+
   end
 
   def show
