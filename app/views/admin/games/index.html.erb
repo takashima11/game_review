@@ -30,8 +30,8 @@
               <% @games.each do |game| %>
                 <tr>
                   <th><%= game.id %></th>
-                  <th><%= link_to game.name, admin_game_path(game) %></th>
-                  <th><%= game.release_date %></th>
+                  <th><%= link_to game.title, admin_game_path(game) %></th>
+                  <th><%= game.sales_date %></th>
                   <!--<th></th>-->
                   <!--<th></th>-->
                 </tr>

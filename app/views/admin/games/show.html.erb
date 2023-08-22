@@ -1,2 +1,73 @@
 <h1>Admin::Games#show</h1>
 <p>Find me in app/views/admin/games/show.html.erb</p>
+
+<div class="container">
+  <h3 class="pb-3">ゲーム詳細</h3>
+  
+  <div class="row">
+    <div class="col-2">
+      <p>ゲームタイトル</p>
+    </div>
+    <div class="col-10">
+      <%= @post.game.title %>
+    </div>
+  </div>
+  
+   <div class="row">
+    <div class="col-2">
+      <p>発売元名</p>
+    </div>
+    <div class="col-10">
+      <%= @post.game.label %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-2">
+      <p>対応機種</p>
+    </div>
+    <div class="col-10">
+      <%= @post.game.hardware %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-2">
+      <p>発売日</p>
+    </div>
+    <div class="col-10">
+      <%= @post.game.sales_date %>
+    </div>
+  </div>
+  
+  <div class="row">
+    <%= image_tag(@post.game.image_url + "?_ex=60x60") %>
+  </div>
+
+  <h5 class="pt-5">レビュー内容</h5>
+  <table class="table">
+    <tbody>
+    <% @posts.each do |post| %>
+      <tr>
+        <td><div><%= post.body %></div></td>
+
+        <td><div id="star-rate<%= post.id%>"></div></td>
+        <td><%= link_to "レビュー詳細", admin_post_path(post.id) %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <script>
+    $('#star-rate<%= @post.id %>').empty();
+    var elem<%= @post.id %> = document.querySelector('#star-rate<%= @post.id %>');
+    var opt<%= @post.id %> = {
+      size:    36,
+      starOn: "<%= asset_path('star-on.png') %>",
+      starOff: "<%= asset_path('star-off.png') %>",
+     half:      false,
+      score: <%= @post.star %>,
+      readOnly: true
+    };
+    raty(elem<%= @post.id %>, opt<%= @post.id %>);
+  </script>

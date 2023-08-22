@@ -21,8 +21,18 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
-    @customers = Customer.all
+    # @posts = Post.all
+    # @customers = Customer.all
+
+    # @star = Post.where(star: "4")
+    if params[:post].present? && params[:post][:star].present?
+
+      @posts = Post.where(star: params[:post][:star]).order(created_at: :desc).page(params[:page]).per(8)
+
+    else
+
+      @posts = Post.order(created_at: :desc).page(params[:page]).per(8)
+    end
 
   end
 

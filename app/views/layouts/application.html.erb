@@ -41,6 +41,7 @@
                   </li>
                 <% end %>
               <% elsif customer_signed_in? %>
+                <p class="mr-5">ようこそ、<%= current_customer.nickname %>さん！</p>
                 <li class="nav-item ml-5">
                   <%= link_to "マイページ", current_customer_show_path(current_customer.id), class: "btn btn-sm btn-outline-secondary" %>
                 </li>

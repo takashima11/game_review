@@ -1,6 +1,16 @@
 <div class="container">
   <h1>投稿一覧</h1>
-  <div class="row">
+
+
+
+  <%= form_with url: posts_path, method: :get, local: true do |f| %>
+    <div id="post_raty"></div>
+
+    <%= f.submit "検索" %>
+  <% end %>
+
+
+  <div class="row pt-3">
     <table class="table">
       <thead>
         <tr>
@@ -33,7 +43,7 @@
             raty(elem<%= post.id %>, opt<%= post.id %>);
           </script>
 
-          <td><%= post.customer.nickname %></td>
+          <td><%=link_to post.customer.nickname, posts_path(nickname: post.customer.nickname) %></td>
         </tr>
 
       <% end %>
@@ -42,4 +52,13 @@
   </div>
 </div>
 
-
+ <script>
+  var elem = document.getElementById('post_raty');
+  var opt = {
+      starOn: "<%= asset_path('star-on.png') %>",
+      starOff: "<%= asset_path('star-off.png') %>",
+      starHalf: "<%= asset_path('star-half.png') %>",
+      scoreName: "post[star]"
+    };
+    raty(elem,opt);
+  </script>

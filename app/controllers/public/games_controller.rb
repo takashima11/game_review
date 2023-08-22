@@ -18,18 +18,22 @@ class Public::GamesController < ApplicationController
     # end
     if params[:keyword].present?
       @games_all = RakutenWebService::Books::Game.search(title: params[:keyword])
-      @games_all = @games_all.map do |g|
-        Game.new(title: g['title'],
-                 item_caption: g['itemCaption'],
-                 label: g['label'],
-                 jan: g['jan'],
-                 hardware: g['hardware'],
-                 item_url: g['item_url'],
-                 image_url: g['mediumImageUrl'].gsub('?_ex=120x120', ''),
-                 sales_date: g['sales_date'])
-      end
+
+    elsif params[:hardware].present?
+      @games_all = RakutenWebService::Books::Game.search(hardware: params[:hardware])
     else
       @games_all = []
+    end
+
+    @games_all = @games_all.map do |g|
+      Game.new(title: g['title'],
+               item_caption: g['itemCaption'],
+               label: g['label'],
+               jan: g['jan'],
+               hardware: g['hardware'],
+               item_url: g['item_url'],
+               image_url: g['mediumImageUrl'].gsub('?_ex=120x120', ''),
+               sales_date: g['sales_date'])
     end
   end
 

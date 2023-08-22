@@ -16,7 +16,9 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     resources :games, only: [:index, :new, :show, :edit, :create, :update]
     resources :customers, only: [:index, :show, :edit, :update]
-    resources :posts, only: [:show]
+    resources :posts, only: [:show, :destroy] do
+      resources :comments, only: [:destroy]
+    end
     resources :jenres, only: [:index, :create, :edit, :update]
   end
 
