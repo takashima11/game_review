@@ -73,6 +73,21 @@
     <%= f.hidden_field :image_url, value: @game.image_url %>
     <%= f.hidden_field :sales_date, value: @game.sales_date %>
 
+    <div class="form-group m-5">タグ</div>
+
+    <div class="row d-flex justify-content-start m-5">
+      <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :tag_type) do |tag| %>
+        <div class="form-check form-check-inline flex flex-wrap">
+          <%= tag.label do %>
+            <%= tag.check_box %>
+            <%= tag.text %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+
+
     <%= f.submit "review" %>
   <% end %>
 

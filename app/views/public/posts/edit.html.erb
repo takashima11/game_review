@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <h4>投稿編集</h4>
+  </div>
+
+  <%= form_with(model: @post, local: true) do |form| %>
+
+  <!--・・・省略・・・-->
+
+    <%= form.label(:public, for: nil, class:'post-status__label') do %>
+        <%= form.radio_button :status, :public %>
+        <%= I18n.t('activerecord.attributes.post.statuses.public') %>
+    <% end %>
+    <%= form.label(:private, for: nil, class:'post-status__label') do %>
+        <%= form.radio_button :status, :private %>
+        <%= I18n.t('activerecord.attributes.post.statuses.private') %>
+    <% end %>
+
+  <!--・・・省略・・・-->
+
+  <% end %>
+
+</div>

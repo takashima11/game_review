@@ -33,6 +33,9 @@
                     <%= link_to "ジャンル一覧", admin_jenres_path, class: "btn btn-sm btn-outline-secondary" %>
                   </li>
                   <li class="nav-item ml-5">
+                    <%= link_to "タグ一覧", admin_tags_path, class: "btn btn-sm btn-outline-secondary" %>
+                  </li>
+                  <li class="nav-item ml-5">
                     <%= link_to "ろぐあうと", destroy_admin_session_path, method: :delete, class: "btn btn-sm btn-outline-secondary" %>
                   </li>
                 <% else %>

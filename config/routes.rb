@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       resources :comments, only: [:destroy]
     end
     resources :jenres, only: [:index, :create, :edit, :update]
+    resources :tags, only: [:index, :create, :edit, :update, :destroy]
   end
 
   scope module: :public do
@@ -44,7 +45,9 @@ Rails.application.routes.draw do
     # post 'posts' => 'posts#create'
     # get 'posts' => 'posts#index'
     # get 'posts/:id' => 'posts#show',as: 'posts/show'
-    resources :posts, only: [:new, :create, :index, :show] do
+    get "search" => "posts#search"
+
+    resources :posts, only: [:new, :create, :index, :show, :edit] do
       resources :comments, only: [:create]
     end
 

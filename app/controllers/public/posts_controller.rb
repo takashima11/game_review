@@ -32,15 +32,32 @@ class Public::PostsController < ApplicationController
     else
 
       @posts = Post.order(created_at: :desc).page(params[:page]).per(8)
+
+      @posts = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : Post.all
     end
+
+    if params[:keyword]
+      @posts = @posts.search(params[:keyword]).page(params[:page])
+    else
+      @posts = @posts.page(params[:page])
+    end
+    @keyword = params[:keyword]
 
   end
 
   def show
+    @posts = Post.published
     @post = Post.find(params[:id])
     @comments = @post.comments
     @comment = current_customer.comments.new
   end
+
+  def edit
+    @post = Post.find(params[:id])
+    @comments = @post.comments
+    @comment = current_customer.comments.new
+  end
+
 
   private
 

@@ -45,6 +45,8 @@ class Public::GamesController < ApplicationController
     if @game.new_record?
       @game.assign_attributes(game_params)
       @posts = []
+    else
+      @posts = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : Post.all
     end
     @post = Post.new
     @posts = @game.posts
@@ -69,5 +71,9 @@ class Public::GamesController < ApplicationController
 
   def game_params
     params.require(:game).permit(:title, :item_caption, :label, :jan, :hardware, :item_url, :image_url, :sales_date)
+  end
+
+  def post_params
+    params.require(:post).permit(tag_ids: [])
   end
 end

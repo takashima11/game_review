@@ -1,7 +1,7 @@
 <div class="container">
   <h1>投稿一覧</h1>
 
-
+  <%= render "search", post: @post %>
 
   <%= form_with url: posts_path, method: :get, local: true do |f| %>
     <div id="post_raty"></div>
@@ -17,6 +17,9 @@
           <th>タイトル</th>
           <th>評価</th>
           <th>投稿者</th>
+          <div class="row d-flex border-bottom m-5">
+            <div class="col-1 py-3 font-weight-bold">タグ</div>
+          </div>
         </tr>
       </thead>
 
@@ -44,6 +47,12 @@
           </script>
 
           <td><%=link_to post.customer.nickname, posts_path(nickname: post.customer.nickname) %></td>
+
+          <div class="col-1 py-3">
+            <% post.tags.each do |tag| %>
+              <%= tag.tag_type %>
+            <% end %>
+          </div>
         </tr>
 
       <% end %>
