@@ -16,6 +16,7 @@ class Public::GamesController < ApplicationController
     #     puts "[#{child.id}] #{child.name}"
     #   end
     # end
+
     if params[:keyword].present?
       @games_all = RakutenWebService::Books::Game.search(title: params[:keyword])
 

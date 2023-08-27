@@ -1,4 +1,6 @@
 class Public::PostsController < ApplicationController
+  # before_action :authenticate_user!, only: [:create, :edit, :update, :destroy]
+
   def new
     @post = Post.new
   end
@@ -9,7 +11,8 @@ class Public::PostsController < ApplicationController
       @game.assign_attributes(game_params)
       @game.save!
     end
-    @post = current_customer.posts.build(post_params.merge(game_id: @game.id))
+    @post = current_customer.posts.build(post_params.merge(game_id: @game.id, tag_ids:params[:post][:tag_ids].drop(1)))
+    binding.pry
     if @post.save
       flash[:notice] = "success"
       redirect_to posts_path
@@ -24,19 +27,25 @@ class Public::PostsController < ApplicationController
     # @posts = Post.all
     # @customers = Customer.all
 
-    # @star = Post.where(star: "4")
+    # @star = Post.where(star: "4")。。「」
+    # binding.pry
+
+
     if params[:post].present? && params[:post][:star].present?
 
       @posts = Post.where(star: params[:post][:star]).order(created_at: :desc).page(params[:page]).per(8)
 
     else
 
-      @posts = Post.order(created_at: :desc).page(params[:page]).per(8)
+      @posts = Post.where(status: 0).order(created_at: :desc).page(params[:page]).per(8)
 
-      @posts = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : Post.all
+      # @posts = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : Post.all
     end
 
-    if params[:keyword]
+    if params[:tag_id].present?
+      # binding.pry
+      @posts = Post.joins(:tags).where(tags: { id: params[:tag_id] })
+    elsif params[:keyword]
       @posts = @posts.search(params[:keyword]).page(params[:page])
     else
       @posts = @posts.page(params[:page])
@@ -46,7 +55,7 @@ class Public::PostsController < ApplicationController
   end
 
   def show
-    @posts = Post.published
+    # @posts = Post.published
     @post = Post.find(params[:id])
     @comments = @post.comments
     @comment = current_customer.comments.new
@@ -56,6 +65,13 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @comments = @post.comments
     @comment = current_customer.comments.new
+  end
+
+  def update
+
+    @post = Post.find(params[:id])
+    @post.update(status: params[:post][:status])
+    redirect_to edit_post_path(@post.id)
   end
 
 

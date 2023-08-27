@@ -15,15 +15,17 @@
       <thead>
         <tr>
           <th>タイトル</th>
+          <th></th>
           <th>評価</th>
           <th>投稿者</th>
-          <div class="row d-flex border-bottom m-5">
-            <div class="col-1 py-3 font-weight-bold">タグ</div>
-          </div>
+          <!--<div class="row d-flex border-bottom m-5">-->
+          <!--  <div class="col-1 py-3 font-weight-bold">タグ</div>-->
+          <!--</div>-->
         </tr>
       </thead>
 
       <tbody>
+        
       <% @posts.each do |post| %>
         <%#= post.inspect %><br>
         <%#= post.game.inspect %><br>
@@ -31,6 +33,14 @@
 
         <tr>
           <td><%= link_to post.game.title.truncate(20), post_path(post.id) %></td>
+          <td>
+            <div class="col-1 py-3">
+              <% post.tags.each do |tag| %>
+                <%= tag.tag_type %>
+              <% end %>
+            </div>
+           
+          </td>
           <td><div id="star-rate<%= post.id%>"></div></td>
           <script>
             $('#star-rate<%= post.id %>').empty();
@@ -48,11 +58,7 @@
 
           <td><%=link_to post.customer.nickname, posts_path(nickname: post.customer.nickname) %></td>
 
-          <div class="col-1 py-3">
-            <% post.tags.each do |tag| %>
-              <%= tag.tag_type %>
-            <% end %>
-          </div>
+
         </tr>
 
       <% end %>

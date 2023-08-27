@@ -47,7 +47,7 @@ Rails.application.routes.draw do
     # get 'posts/:id' => 'posts#show',as: 'posts/show'
     get "search" => "posts#search"
 
-    resources :posts, only: [:new, :create, :index, :show, :edit] do
+    resources :posts, only: [:new, :create, :index, :show, :edit, :update] do
       resources :comments, only: [:create]
     end
 
