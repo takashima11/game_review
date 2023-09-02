@@ -1,73 +1,108 @@
-<h1>Public::Posts#show</h1>
-<p>Find me in app/views/public/posts/show.html.erb</p>
-
 <div class="container">
-    <%#= @post.inspect %><br>
+  <%#= @post.inspect %>
 
-    <%#= @post.game.inspect %>
+  <%#= @post.game.inspect %>
+
+  <%#= @post.body %>
+  <%#= @post.star %>
+
+  <h2>投稿詳細</h2>
+
+  <div class="row mt-5">
+
+      <div class="col-3">
+        <%= image_tag(@post.game.image_url + "?_ex=200x200") %>
+      </div>
+      <div class="col-9">
+        <div class="mb-5">
+          <%= @post.game.title %>
+        </div>
+
+
+        <% @post.tags.each do |tag| %>
+          <tr>
+            <th style="width: 30%">　タグ　</th>
+            <td style="width: 70%"><%= tag.tag_type %></td>
+          </tr>
+        <% end %>
+      </div>
+
+  </div>
+
+  <div class="row mt-5">
+    <div class="col-6">
+
+      <div class="row">
+        <%= form_with model: @post, local: true do |f| %>
+          <!--<label for="body">感想</label>-->
+          <h4>レビュー</h4>
+          <div class="input-mysize mb-4">
+            <%= f.text_area :body, id: "body", cols: "60", rows: "6", readonly: '' %>
+          </div>
+        <% end %>
+        <%#= @post.body %>
+      </div>
+    <!--==================-->
+      <div class="row d-flex justify-content-between">
+        <div id="star-rate<%= @post.id%>">    </div>
 
 
 
 
+        <%# if @customer.id == current_customer.id %>
+        <% if @post.customer == current_customer %>
+          <%= link_to "編集", edit_post_path, class: "mr-5" %>
+        <% end %>
+      </div>
+        <%# end %>
 
-    <%#= @post.body %>
-    <%#= @post.star %>
-
-    <h2>投稿詳細</h2>
-
-    <div class="row">
-      <%= @post.game.title %>
+        <!--<div>-->
+          <%#= f.label :is_published_flag, "公開", value: true %>
+          <%#= f.radio_button :is_published_flag, 'true' %>
+        <!--</div>-->
+        <!--<div>-->
+          <%#= f.label :is_published_flag, "非公開", value: false %>
+          <%#= f.radio_button :is_published_flag,'false' %>
+        <!--</div>-->
     </div>
-    <div class="row">
-      <%= image_tag(@post.game.image_url + "?_ex=60x60") %>
+
+    <div class="col-1"></div>
+
+    <div class="col-5">
+
+      <h4>コメントをする</h4>
+
+      <%= form_with(model:[@post, @comment], method: :post) do |f| %>
+        <%= f.text_area :comment_content, cols: "50", rows: "6" %>
+        <%= f.hidden_field :post_id, value: @post.id %>
+        <%= f.submit 'コメントする', class: "mt-4" %>
+      <% end %>
+
+      <h4 class="mt-5">コメント一覧</h4>
+
+      <table class="table">
+        <tbody>
+        <% @comments.each do |comment| %>
+          <tr>
+            <td><%= comment.comment_content %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
     </div>
-
-    <%= @post.body %>
-<!--==================-->
-    <div id="star-rate<%= @post.id%>">    </div>
-      <script>
-        $('#star-rate<%= @post.id %>').empty();
-        var elem<%= @post.id %> = document.querySelector('#star-rate<%= @post.id %>');
-        var opt<%= @post.id %> = {
-          size:    36,
-          starOn: "<%= asset_path('star-on.png') %>",
-          starOff: "<%= asset_path('star-off.png') %>",
-         half:      false,
-          score: <%= @post.star %>,
-          readOnly: true
-        };
-        raty(elem<%= @post.id %>, opt<%= @post.id %>);
-      </script>
-
-    <% @post.tags.each do |tag| %>
-      <tr>
-        <th style="width: 30%">タグ</th>
-        <td style="width: 70%"><%= tag.tag_type %></td>
-      </tr>
-    <% end %>
-
-    <%= link_to "編集", edit_post_path %>
-
-    <div>
-      <%#= f.label :is_published_flag, "公開", value: true %>
-      <%#= f.radio_button :is_published_flag, 'true' %>
-    </div>
-    <div>
-      <%#= f.label :is_published_flag, "非公開", value: false %>
-      <%#= f.radio_button :is_published_flag,'false' %>
-    </div>
-
-    <h2 class="mt-5">コメントをする</h2>
-
-    <%= form_with(model:[@post, @comment], method: :post) do |f| %>
-      <%= f.text_area :comment_content %>
-      <%= f.hidden_field :post_id, value: @post.id %>
-      <%= f.submit 'コメントする' %>
-    <% end %>
-
-    <h2 class="mt-3">コメント一覧</h2>
-
-    <% @comments.each do |comment| %>
-      <%= comment.comment_content %>
-    <% end %>
+  </div>
 </div>
+
+<script>
+  $('#star-rate<%= @post.id %>').empty();
+  var elem<%= @post.id %> = document.querySelector('#star-rate<%= @post.id %>');
+  var opt<%= @post.id %> = {
+    size:    36,
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+   half:      false,
+    score: <%= @post.star %>,
+    readOnly: true
+  };
+  raty(elem<%= @post.id %>, opt<%= @post.id %>);
+</script>

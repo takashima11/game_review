@@ -11,10 +11,12 @@
   </head>
 
   <body>
-    <header>
-      <div class="container">
-        <nav class="navbar navbar-bottom pb-5 mb-4 border-bottom">
-          <h4 class="pl-3 pr-3 border border-dark mt-5">game_review</h4>
+    <header class="border-bottom border-primary mb-5 pb-3">
+      <div class="container ">
+        <nav class="navbar navbar-bottom">
+          <div class="d-flex align-items-center">
+            <h2 class="pl-3 pr-3 border border-dark mt-5">game_review</h2>
+          </div>
 
           <ul class="navbar-nav ml-auto">
             <form class="form-inline">
@@ -29,9 +31,9 @@
                   <li class="nav-item ml-5">
                     <%= link_to "レビュー履歴一覧", admin_root_path, class: "btn btn-sm btn-outline-secondary" %>
                   </li>
-                  <li class="nav-item ml-5">
-                    <%= link_to "ジャンル一覧", admin_jenres_path, class: "btn btn-sm btn-outline-secondary" %>
-                  </li>
+                  <!--<li class="nav-item ml-5">-->
+                  <!--  <%#= link_to "ジャンル一覧", admin_jenres_path, class: "btn btn-sm btn-outline-secondary" %>-->
+                  <!--</li>-->
                   <li class="nav-item ml-5">
                     <%= link_to "タグ一覧", admin_tags_path, class: "btn btn-sm btn-outline-secondary" %>
                   </li>
@@ -54,14 +56,16 @@
                 <li class="nav-item ml-5">
                   <%= link_to "投稿一覧", posts_path, class: "btn btn-sm btn-outline-secondary" %>
                 </li>
-                <li><%=  link_to "ゲームを検索",games_search_path,class: 'nav-link ' %></li>
+                <li class="nav-item ml-5">
+                  <%=  link_to "ゲームを検索",games_search_path,class: ' btn btn-sm btn-outline-secondary ' %>
+                </li>
                 <li class="nav-item ml-5">
                   <%= link_to "ログアウト", destroy_customer_session_path, method: :delete,class: "btn btn-sm btn-outline-secondary" %>
                 </li>
               <% else %>
-                <li class="nav-item ml-5">
-                  <%= link_to "About", about_path, class: "btn btn-sm btn-outline-secondary" %>
-                </li>
+                <!--<li class="nav-item ml-5">-->
+                <!--  <%#= link_to "About", about_path, class: "btn btn-sm btn-outline-secondary" %>-->
+                <!--</li>-->
                 <!--<li class="nav-item ml-5">-->
                 <!--  <%#= link_to "ゲーム一覧", games_path, class: "btn btn-sm btn-outline-secondary" %>-->
                 <!--</li>-->
@@ -71,7 +75,9 @@
                 <li class="nav-item ml-5">
                   <%= link_to "ログイン", new_customer_session_path, class: "btn btn-sm btn-outline-secondary" %>
                 </li>
-                <li><%= link_to 'ゲストログイン（閲覧用）', customers_guest_sign_in_path, method: :post, class: "login" %></li>
+                <li class="nav-item ml-5">
+                  <%= link_to 'ゲストログイン（閲覧用）', customers_guest_sign_in_path, method: :post, class: "login btn btn-sm btn-outline-secondary" %>
+                </li>
               <% end %>
             </form>
           </ul>
@@ -81,8 +87,9 @@
 
     <%= yield %>
 
-    <footer class="mt-5 pt-5 border-top ">
+    <footer class="mt-5 pt-5 border-top border-primary ">
       <div class="d-flex justify-content-center">
+        <p class="pr-3">Copyright © All Rights Reserved by For What?</p>
         <!-- Rakuten Web Services Attribution Snippet FROM HERE -->
         <a href="https://webservice.rakuten.co.jp/" target="_blank"><img src="https://webservice.rakuten.co.jp/img/credit/200709/credit_31130.gif" border="0" alt="Rakuten Web Service Center" title="Rakuten Web Service Center" width="311" height="30"/></a>
         <!-- Rakuten Web Services Attribution Snippet TO HERE -->

@@ -1,6 +1,14 @@
 class Public::CustomersController < ApplicationController
   def show
     @customer = current_customer
+
+
+    # if params[:post].present? && params[:post][:star].present?
+    #   @posts = Post.where(star: params[:post][:star]).order(created_at: :desc).page(params[:page]).per(8)
+    # else
+      @posts = Post.where(customer_id: current_customer.id).includes(:customer).order(created_at: :desc).page(params[:page]).per(8)
+    # end
+
   end
 
   def edit

@@ -51,6 +51,8 @@ class Public::GamesController < ApplicationController
     end
     @post = Post.new
     @posts = @game.posts
+
+    # @game_caption = @game.item_caption
   end
 
   # def create

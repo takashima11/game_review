@@ -8,6 +8,7 @@ class Post < ApplicationRecord
 
 
   validates :body, presence: true
+  validates :star, presence: true
 
   # scope :published, -> {where(is_published_flag: true)}
   # scope :unpublished, -> {where(is_published_flag: false)}

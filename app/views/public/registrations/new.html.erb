@@ -1,12 +1,12 @@
 <div class="container">
   <div class="row mb-4">
-    <span>　　　　　　　</span><h5>新規会員登録</h5>
+    <span>　　　　　　　</span><h4>新規会員登録</h4>
   </div>
 
 <%= form_with model: @customer, url: customer_registration_path, id: 'new_customer', class: 'new_customer' do |f| %>
   <%= render "public/shared/error_messages", resource: resource %>
 
-  <div class="row mb-4">
+  <div class="row mb-3">
     <div class="col-3">
       <p><%= f.label "名前" %></p>
       <p><%= f.label "フリガナ" %></p>
@@ -26,18 +26,20 @@
       <p><%= f.label "(セイ)" %></p>
     </div>
 
-    <div class="col-2">
+    <div class="col-3">
       <p><%= f.text_field :last_name %></p>
       <p><%= f.text_field :last_name_kana %></p>
       <p><%= f.email_field :email, autofocus: true, autocomplete: "email" %></p>
-      <p><%= f.text_field :nickname %></p>
+      <p><%= f.text_field :nickname, class: "form-control form-control-sm", type: "text", placeholder: "ニックネーム" %></p>
       <p><%= f.date_select :date_of_birth, {start_year: 1920, end_year: 2023,
           include_blank: true, use_two_digit_numbers: true},
           {class: "input-tab birthday-select"}%></p>
-      <p><div class="form-group">
-          <%= f.label :gender, '性別' %>
-          <%= f.select :gender, {'男性': 1, '女性': 2}, { include_blank: '選択してください'}, { class: 'form-control' , required: true } %>
-        </div></p>
+      <p>
+        <div class="form-group d-flex flex-row">
+          <div class="pr-3 pt-2"><%= f.label :gender, '性別' %></div>
+          <div><%= f.select :gender, {'男性': 1, '女性': 2}, { include_blank: '選択してください'}, { class: 'form-control' , required: true } %></div>
+        </div>
+      </p>
       <!--<%# if @minimum_password_length %>-->
       <!--<em>(<%#= @minimum_password_length %> characters minimum)</em>-->
       <!--<%# end %><br />-->
@@ -48,7 +50,7 @@
       </div>
     </div>
 
-    <div class="col-1 text-right">
+    <div class="col-0.5 text-right">
       <p><%= f.label "(名)" %></p>
       <p><%= f.label "(メイ)" %></p>
     </div>
@@ -60,6 +62,6 @@
   </div>
 <% end %>
 
-<%= render "public/shared/links" %>
+<%#= render "public/shared/links" %>
 
 </div>

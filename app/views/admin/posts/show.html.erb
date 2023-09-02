@@ -1,45 +1,52 @@
-<h1>Admin::Posts#show</h1>
-<p>Find me in app/views/admin/posts/show.html.erb</p>
+
 
 <div class="container">
   <div class="row">
-    <div class="col-6">
-      <h2 class="mt-3">レビュー詳細</h2>
 
+
+    <div class="col-7">
+      <h2 class="mt-3 mb-3">レビュー詳細</h2>
       <div class="row">
-        <%= @post.game.title %>
+        <div class="col-2">
+          <%= image_tag(@post.game.image_url + "?_ex=150x150") %>
+        </div>
+
+        <div class="col-10">
+          <div>
+            <%= @post.game.title %>
+          </div>
+
+          <div class="mt-3 mb-3">
+            <%= @post.body %>
+          </div>
+      <!--==================-->
+          <div id="star-rate<%= @post.id%>"></div>
+
+          <div class="mt-3">
+            <%= link_to "Destroy",admin_root_path(@post),method: :delete,data: {confirm: '本当に消しますか？'},class: "btn btn-danger" %>
+          </div>
+
+          <script>
+            $('#star-rate<%= @post.id %>').empty();
+            var elem<%= @post.id %> = document.querySelector('#star-rate<%= @post.id %>');
+            var opt<%= @post.id %> = {
+              size:    36,
+              starOn: "<%= asset_path('star-on.png') %>",
+              starOff: "<%= asset_path('star-off.png') %>",
+             half:      false,
+              score: <%= @post.star %>,
+              readOnly: true
+            };
+            raty(elem<%= @post.id %>, opt<%= @post.id %>);
+          </script>
+        </div>
       </div>
-      <div class="row">
-        <%= image_tag(@post.game.image_url + "?_ex=60x60") %>
-      </div>
-
-
-
-      <%= @post.body %>
-    <!--==================-->
-      <div id="star-rate<%= @post.id%>"></div>
-
-      <%= link_to "Destroy",admin_root_path(@post),method: :delete,data: {confirm: '本当に消しますか？'},class: "btn btn-danger" %>
-
-      <script>
-        $('#star-rate<%= @post.id %>').empty();
-        var elem<%= @post.id %> = document.querySelector('#star-rate<%= @post.id %>');
-        var opt<%= @post.id %> = {
-          size:    36,
-          starOn: "<%= asset_path('star-on.png') %>",
-          starOff: "<%= asset_path('star-off.png') %>",
-         half:      false,
-          score: <%= @post.star %>,
-          readOnly: true
-        };
-        raty(elem<%= @post.id %>, opt<%= @post.id %>);
-      </script>
     </div>
 
     <div class="col-1"></div>
 
-    <div class="col-5">
-      <h2 class="mt-3">コメント一覧</h2>
+    <div class="col-4">
+      <h2 class="mt-3 mb-3">コメント一覧</h2>
 
       <% @comments.each do |comment| %>
         <div class="border-bottom pb-2">

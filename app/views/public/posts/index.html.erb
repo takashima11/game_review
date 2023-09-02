@@ -1,12 +1,14 @@
 <div class="container">
-  <h1>投稿一覧</h1>
+  <h2>投稿一覧</h2>
 
   <%= render "search", post: @post %>
 
   <%= form_with url: posts_path, method: :get, local: true do |f| %>
-    <div id="post_raty"></div>
+    <div class="d-flex flex-row">
+      <div id="post_raty"></div>
 
-    <%= f.submit "検索" %>
+      <div class="ml-2"><%= f.submit "検索" %></div>
+    </div>
   <% end %>
 
 
@@ -25,7 +27,7 @@
       </thead>
 
       <tbody>
-        
+
       <% @posts.each do |post| %>
         <%#= post.inspect %><br>
         <%#= post.game.inspect %><br>
@@ -39,7 +41,7 @@
                 <%= tag.tag_type %>
               <% end %>
             </div>
-           
+
           </td>
           <td><div id="star-rate<%= post.id%>"></div></td>
           <script>

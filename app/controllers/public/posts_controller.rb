@@ -44,7 +44,7 @@ class Public::PostsController < ApplicationController
 
     if params[:tag_id].present?
       # binding.pry
-      @posts = Post.joins(:tags).where(tags: { id: params[:tag_id] })
+      @posts = Post.joins(:tags).where(tags: { id: params[:tag_id] }, status: 0)
     elsif params[:keyword]
       @posts = @posts.search(params[:keyword]).page(params[:page])
     else
@@ -65,6 +65,13 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @comments = @post.comments
     @comment = current_customer.comments.new
+
+    if @post.customer == current_customer
+      render "edit"
+    else
+      redirect_to posts_path
+    end
+
   end
 
   def update

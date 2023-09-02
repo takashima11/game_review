@@ -1,7 +1,7 @@
 <div class = "search-box" >
   <%= form_with url: games_search_path, method: :get, local: true do |f| %>
     <div class = "form-group" >
-      <%= f.text_field :keyword, class: "form-control" %>
+      <%= f.text_field :keyword, class: "form-control", type: "text", placeholder: "ゲームタイトル入力" %>
       <%= f.submit 'ゲームタイトルを検索', class: "form-control btn btn-success" %>
     </div>
   <% end %>

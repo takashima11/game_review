@@ -1,58 +1,64 @@
-<h1>Admin::Games#show</h1>
-<p>Find me in app/views/admin/games/show.html.erb</p>
+<!--<h1>Admin::Games#show</h1>-->
+<!--<p>Find me in app/views/admin/games/show.html.erb</p>-->
 
 <div class="container">
-  <h3 class="pb-3">ゲーム詳細</h3>
-  
-  <div class="row">
-    <div class="col-2">
-      <p>ゲームタイトル</p>
-    </div>
-    <div class="col-10">
-      <%= @post.game.title %>
-    </div>
-  </div>
-  
-   <div class="row">
-    <div class="col-2">
-      <p>発売元名</p>
-    </div>
-    <div class="col-10">
-      <%= @post.game.label %>
-    </div>
-  </div>
+  <h2 class="pb-3">ゲーム詳細</h2>
 
   <div class="row">
-    <div class="col-2">
-      <p>対応機種</p>
-    </div>
     <div class="col-10">
-      <%= @post.game.hardware %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-2">
-      <p>発売日</p>
-    </div>
-    <div class="col-10">
-      <%= @post.game.sales_date %>
-    </div>
-  </div>
+      <div class="row">
+        <div class="col-3">
+          <p>ゲームタイトル</p>
+        </div>
+        <div class="col-9">
+          <%= @post.game.title %>
+        </div>
+      </div>
   
-  <div class="row">
-    <%= image_tag(@post.game.image_url + "?_ex=60x60") %>
-  </div>
+      <!--<div class="row">-->
+      <!--  <div class="col-2">-->
+      <!--    <p>発売元名</p>-->
+      <!--  </div>-->
+      <!--  <div class="col-10">-->
+      <!--    <%#= @post.game.label %>-->
+      <!--  </div>-->
+      <!--</div>-->
+  
+      <div class="row pt-4">
+        <div class="col-3">
+          <p>対応機種</p>
+        </div>
+        <div class="col-9">
+          <%= @post.game.hardware %>
+        </div>
+      </div>
+  
+      <div class="row pt-4">
+        <div class="col-3">
+          <p>発売日</p>
+        </div>
+        <div class="col-9">
+          <%= @post.game.sales_date %>
+        </div>
+      </div>
+    </div>  
+    
+    <!--<div class="col-2"></div>-->
+    
+    <div class="col-2">
+      <%= image_tag(@post.game.image_url + "?_ex=200x200") %>
+    </div>
+  </div>  
 
-  <h5 class="pt-5">レビュー内容</h5>
+  <h5 class="pt-5 pb-3">レビュー内容</h5>
   <table class="table">
     <tbody>
     <% @posts.each do |post| %>
-      <tr>
-        <td><div><%= post.body %></div></td>
+      <tr class="d-flex">
+        <td class="p-2 flex-grow-1"><div><%= post.body %></div></td>
 
         <td><div id="star-rate<%= post.id%>"></div></td>
-        <td><%= link_to "レビュー詳細", admin_post_path(post.id) %></td>
+        <td><%= link_to "詳細", admin_post_path(post.id) %></td>
       </tr>
     <% end %>
     </tbody>
