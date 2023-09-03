@@ -66,7 +66,7 @@
   <div class="row mt-5 pt-5 border-top border-success border-width5">
     <%= form_with model: @post, local: true do |f| %>
       <div class="row">
-        <div class="col-4 mr-3">
+        <div class="col-6 mr-3">
           <label for="body">レビュー</label>
           <div class="input-mysize">
             <%= f.text_area :body, id: "body", cols: "70", rows: "6"  %>
@@ -93,9 +93,9 @@
           <%= f.submit "投稿する" %>
         </div>
 
-        <div class="col-2"></div>
+        <!--<div class="col-2"></div>-->
 
-        <div class="col-5 ml-5 pl-5">
+        <div class="col-6 ml-5 pl-5">
           <div class="form-group mt-5 ml-5">タグ</div>
 
           <div class="row d-flex justify-content-start m-5">
@@ -123,6 +123,7 @@
   <!--</div>-->
 
   <script>
+  $('#post_raty').empty();
   var elem = document.getElementById('post_raty');
   var opt = {
       starOn: "<%= asset_path('star-on.png') %>",

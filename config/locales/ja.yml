@@ -1,0 +1,13 @@
+ja:
+  enums:
+    customer:
+      gender:
+        man: "男性"
+        woman: "女性"
+        guest: "不明"
+
+  date:
+    order:
+      - :year
+      - :month
+      - :day

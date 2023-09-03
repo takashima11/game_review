@@ -8,7 +8,7 @@
 
   <div class="row mb-3">
     <div class="col-3">
-      <p><%= f.label "名前" %></p>
+      <p><%= f.label :last_name %></p>
       <p><%= f.label "フリガナ" %></p>
       <p><%= f.label "メールアドレス" %></p>
       <p><%#= f.label :email %></p>
@@ -37,7 +37,7 @@
       <p>
         <div class="form-group d-flex flex-row">
           <div class="pr-3 pt-2"><%= f.label :gender, '性別' %></div>
-          <div><%= f.select :gender, {'男性': 1, '女性': 2}, { include_blank: '選択してください'}, { class: 'form-control' , required: true } %></div>
+          <div><%= f.select :gender, {'男性': 0, '女性': 1}, { include_blank: '選択してください'}, { class: 'form-control' , required: true } %></div>
         </div>
       </p>
       <!--<%# if @minimum_password_length %>-->

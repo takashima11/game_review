@@ -18,7 +18,7 @@
         <% @posts.each do |post| %>
           <tr>
             <td>
-              <%= link_to admin_post_path(post) do %>
+              <%= link_to admin_post_path(id: post.id, game_id: post.game_id) do %>
                 <%= post.updated_at.strftime( "%Y/%m/%d %T" ) %>
               <% end %>
             </td>

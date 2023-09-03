@@ -58,8 +58,8 @@
             raty(elem<%= post.id %>, opt<%= post.id %>);
           </script>
 
-          <td><%=link_to post.customer.nickname, posts_path(nickname: post.customer.nickname) %></td>
-
+          <!--<td><#%=link_to post.customer.nickname, posts_path(nickname: post.customer.nickname) %></td>-->
+          <td><%= post.customer.nickname %></td>
 
         </tr>
 
@@ -70,6 +70,7 @@
 </div>
 
  <script>
+ $('#post_raty').empty();
   var elem = document.getElementById('post_raty');
   var opt = {
       starOn: "<%= asset_path('star-on.png') %>",
@@ -77,5 +78,6 @@
       starHalf: "<%= asset_path('star-half.png') %>",
       scoreName: "post[star]"
     };
+
     raty(elem,opt);
   </script>

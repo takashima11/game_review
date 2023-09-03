@@ -3,7 +3,7 @@
 class Public::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
-
+  before_action :gender_to_integer, only: [:create]
   # GET /resource/sign_up
   # def new
   #   super
@@ -75,6 +75,9 @@ class Public::RegistrationsController < Devise::RegistrationsController
   end
 
   protected
+  def gender_to_integer
+    params[:customer][:gender] = params[:customer][:gender].to_i
+  end
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:last_name, :first_name,

@@ -1,4 +1,5 @@
 class Public::GamesController < ApplicationController
+  before_action :authenticate_customer!
   GAME_GENRE_ID = 101205
 
   def search

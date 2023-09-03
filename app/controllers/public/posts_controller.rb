@@ -1,5 +1,7 @@
 class Public::PostsController < ApplicationController
+  before_action :authenticate_customer!
   # before_action :authenticate_user!, only: [:create, :edit, :update, :destroy]
+
 
   def new
     @post = Post.new
@@ -12,7 +14,7 @@ class Public::PostsController < ApplicationController
       @game.save!
     end
     @post = current_customer.posts.build(post_params.merge(game_id: @game.id, tag_ids:params[:post][:tag_ids].drop(1)))
-    binding.pry
+    # binding.pry
     if @post.save
       flash[:notice] = "success"
       redirect_to posts_path
