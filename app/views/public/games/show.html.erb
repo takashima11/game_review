@@ -66,10 +66,10 @@
   <div class="row mt-5 pt-5 border-top border-success border-width5">
     <%= form_with model: @post, local: true do |f| %>
       <div class="row">
-        <div class="col-6 mr-3">
+        <div class="col-6">
           <label for="body">レビュー</label>
           <div class="input-mysize">
-            <%= f.text_area :body, id: "body", cols: "70", rows: "6"  %>
+            <%= f.text_area :body, id: "body", cols: "60", rows: "6"  %>
           </div>
 
 
@@ -83,7 +83,7 @@
 
           <%= f.hidden_field :title, value: @game.title %>
           <%= f.hidden_field :item_caption, value: @game.item_caption %>
-          <%= f.hidden_field :labal, value: @game.label %>
+          <%= f.hidden_field :label, value: @game.label %>
           <%= f.hidden_field :jan, value: @game.jan %>
           <%= f.hidden_field :hardware, value: @game.hardware %>
           <%= f.hidden_field :item_url, value: @game.item_url %>
@@ -93,9 +93,9 @@
           <%= f.submit "投稿する" %>
         </div>
 
-        <!--<div class="col-2"></div>-->
+        <div class="col-3"></div>
 
-        <div class="col-6 ml-5 pl-5">
+        <div class="col-3">
           <div class="form-group mt-5 ml-5">タグ</div>
 
           <div class="row d-flex justify-content-start m-5">

@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     resources :posts, only: [:show, :destroy] do
       resources :comments, only: [:destroy]
     end
-    resources :jenres, only: [:index, :create, :edit, :update]
+    # resources :jenres, only: [:index, :create, :edit, :update]
     resources :tags, only: [:index, :create, :edit, :update, :destroy]
   end
 
@@ -31,7 +31,7 @@ Rails.application.routes.draw do
     resources :games, only: %i[show], params: :item_code
     # get 'games' => 'games#index'
     get 'games/:id' => 'games#show',as: 'games/show'
-    # resources :games, only: [:show, :create]
+    resources :games, only: [:new, :create]
 
 
     get 'current_customer/show' => 'customers#show'

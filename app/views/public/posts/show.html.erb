@@ -1,4 +1,13 @@
 <div class="container">
+  <!--<%# if @comment.errors.any? %>-->
+  <!--  <%#= @comment.errors.count %>件のエラーが発生しました-->
+  <!--  <ul>-->
+  <!--    <%# @comment.errors.full_messages.each do |message| %>-->
+  <!--      <li><%#= message %></li>-->
+  <!--    <%# end %>-->
+  <!--  </ul>-->
+  <!--<%# end %>-->
+  
   <%#= @post.inspect %>
 
   <%#= @post.game.inspect %>
@@ -15,7 +24,7 @@
       </div>
       <div class="col-9">
         <div class="mb-5">
-          <%= @post.game.title %>
+          <h3><%= @post.game.title %></h3>
         </div>
 
 

@@ -14,7 +14,7 @@
           <%= @post.game.title %>
         </div>
       </div>
-  
+
       <!--<div class="row">-->
       <!--  <div class="col-2">-->
       <!--    <p>発売元名</p>-->
@@ -23,7 +23,7 @@
       <!--    <%#= @post.game.label %>-->
       <!--  </div>-->
       <!--</div>-->
-  
+
       <div class="row pt-4">
         <div class="col-3">
           <p>対応機種</p>
@@ -32,7 +32,7 @@
           <%= @post.game.hardware %>
         </div>
       </div>
-  
+
       <div class="row pt-4">
         <div class="col-3">
           <p>発売日</p>
@@ -41,14 +41,14 @@
           <%= @post.game.sales_date %>
         </div>
       </div>
-    </div>  
-    
+    </div>
+
     <!--<div class="col-2"></div>-->
-    
+
     <div class="col-2">
       <%= image_tag(@post.game.image_url + "?_ex=200x200") %>
     </div>
-  </div>  
+  </div>
 
   <h5 class="pt-5 pb-3">レビュー内容</h5>
   <table class="table">
@@ -58,7 +58,7 @@
         <td class="p-2 flex-grow-1"><div><%= post.body %></div></td>
 
         <td><div id="star-rate<%= post.id%>"></div></td>
-        <td><%= link_to "詳細", admin_post_path(post.id) %></td>
+        <td><%= link_to "詳細", admin_post_path(id: post.id, game_id: post.game_id) %></td>
       </tr>
     <% end %>
     </tbody>

@@ -20,7 +20,7 @@
       <p><%= @customer.last_name_kana + @customer.first_name_kana %></p>
       <p><%= @customer.nickname %></p>
       <p><%= @customer.date_of_birth %></p>
-      <p><%= @customer.gender %></p>
+      <p><%= @customer.gender_i18n %></p>
       <p><%= @customer.email %></p>
       <% if @customer.is_deleted == false %>
         <p class="text-success">有効</p>

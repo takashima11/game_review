@@ -2,6 +2,10 @@ class Public::GamesController < ApplicationController
   before_action :authenticate_customer!
   GAME_GENRE_ID = 101205
 
+  # def new
+  #   @list = List.new
+  # end
+
   def search
     # if params[:keyword]
     #   # hoge = RakutenWebService::Ichiba::Item.ranking(:age => 30, :sex => 1)
