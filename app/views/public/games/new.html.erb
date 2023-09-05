@@ -1,11 +1,44 @@
-<h1>新規投稿</h1>
-<%= form_with model: @game do |f| %>
-  <h4>タイトル</h4>
-  <%= f.text_field :title %>
+<div class="container">
 
-  <h4>本文</h4>
-  <%= f.text_area :post.body %>
+  <div class="row d-flex justify-content-center">
 
-  <%= f.submit '投稿' %>
 
-<% end %>
+    <%= form_with model: @game do |f| %>
+      <div class="d-flex flex-row mt-5 mb-3">
+        <h4>ゲームタイトル</h4>
+        <%= f.text_field :title %>
+      </div>
+
+      <div class="d-flex flex-row mt-5 mb-3">
+        <h4>レビュー</h4>
+        <%= f.text_area :body %>
+      </di>
+
+      <div class="d-flex flex-row mt-5 mb-3">
+        <label for="star" class="mr-3">評価:</label>
+        <div id="post_raty"></div><br>
+      </div>
+
+      <%= f.submit '投稿' %>
+
+
+      <%#= f.hidden_field :game_id %>
+      <%#= f.hidden_field :post_id %>
+
+    <% end %>
+  </div>
+
+</div>
+
+
+<script>
+$('#post_raty').empty();
+var elem = document.getElementById('post_raty');
+var opt = {
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
+    scoreName: "post[star]"
+  };
+  raty(elem,opt);
+</script>
