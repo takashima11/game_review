@@ -80,7 +80,7 @@ class Public::PostsController < ApplicationController
 
     @post = Post.find(params[:id])
     @post.update(status: params[:post][:status])
-    redirect_to edit_post_path(@post.id)
+    redirect_to current_customer_show_path(current_customer.id)
   end
 
 
