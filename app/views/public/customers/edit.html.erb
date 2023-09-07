@@ -3,6 +3,16 @@
 <% else %>
   <div class="container">
     <h2 class="mb-3">会員情報編集</h2>
+
+    <% if @customer.errors.any? %>
+      <%= @customer.errors.count %>件のエラーが発生しました
+      <ul>
+        <% @customer.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+
     <div class="row">
 
     </div>

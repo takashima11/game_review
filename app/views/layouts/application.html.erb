@@ -15,7 +15,7 @@
       <div class="container ">
         <nav class="navbar navbar-bottom">
           <div class="d-flex align-items-center">
-            <h2 class="pl-3 pr-3 border border-dark mt-5">game_review</h2>
+            <h1 class="pl-3 pr-3 border border-dark mt-5">game_review</h1>
           </div>
 
           <ul class="navbar-nav ml-auto">
@@ -46,7 +46,9 @@
                   </li>
                 <% end %>
               <% elsif customer_signed_in? %>
-                <p class="mr-5">ようこそ、<%= current_customer.nickname %>さん！</p>
+                <div class="d-flex">
+                  <p>ようこそ、<br><%= current_customer.nickname %>さん！</p>
+                </div>
                 <li class="nav-item ml-5">
                   <%= link_to "マイページ", current_customer_show_path(current_customer.id), class: "btn btn-sm btn-outline-secondary" %>
                 </li>
