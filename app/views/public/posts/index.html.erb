@@ -18,6 +18,7 @@
         <tr>
           <th>タイトル</th>
           <th></th>
+
           <th>評価</th>
           <th>投稿者</th>
           <!--<div class="row d-flex border-bottom m-5">-->
@@ -36,11 +37,11 @@
         <tr>
           <td><%= link_to post.game.title.truncate(20), post_path(post.id) %></td>
           <td>
-            <div class="col-1 py-3">
-              <% post.tags.each do |tag, i| %>
-                <% if i == 0 %>
-                  <%= tag.tag_type %>
-                <% end %>
+            <div>
+              <% post.tags.first(2).each do |tag| %>
+
+                  <%= tag.tag_type %><spam>　</spam>
+
               <% end %>
             </div>
 
