@@ -11,7 +11,7 @@
           <p>ゲームタイトル</p>
         </div>
         <div class="col-9">
-          <%= @post.game.title %>
+          <%= @game.title %>
         </div>
       </div>
 
@@ -29,7 +29,7 @@
           <p>対応機種</p>
         </div>
         <div class="col-9">
-          <%= @post.game.hardware %>
+          <%= @game.hardware %>
         </div>
       </div>
 
@@ -38,7 +38,7 @@
           <p>発売日</p>
         </div>
         <div class="col-9">
-          <%= @post.game.sales_date %>
+          <%= @game.sales_date %>
         </div>
       </div>
     </div>
@@ -46,7 +46,7 @@
     <!--<div class="col-2"></div>-->
 
     <div class="col-2">
-      <%= image_tag(@post.game.image_url + "?_ex=200x200") %>
+      <%= image_tag(@game.image_url + "?_ex=200x200") %>
     </div>
   </div>
 
@@ -57,23 +57,28 @@
       <tr class="d-flex">
         <td class="p-2 flex-grow-1"><div><%= post.body %></div></td>
 
-        <td><div id="star-rate<%= post.id%>"></div></td>
+        <td>
+          <div id="star-rate<%= post.id %>"></div>
+          
+        
+          <script>
+            $('#star-rate<%= post.id %>').empty();
+            var elem<%= post.id %> = document.querySelector('#star-rate<%= post.id %>');
+            var opt<%= post.id %> = {
+              size:    36,
+              starOn: "<%= asset_path('star-on.png') %>",
+              starOff: "<%= asset_path('star-off.png') %>",
+             half:      false,
+              score: <%= post.star %>,
+              readOnly: true
+            };
+            raty(elem<%= post.id %>, opt<%= post.id %>);
+          </script>
+        </td>
         <td><%= link_to "詳細", admin_post_path(id: post.id, game_id: post.game_id) %></td>
       </tr>
+      
+      
     <% end %>
     </tbody>
   </table>
-
-  <script>
-    $('#star-rate<%= @post.id %>').empty();
-    var elem<%= @post.id %> = document.querySelector('#star-rate<%= @post.id %>');
-    var opt<%= @post.id %> = {
-      size:    36,
-      starOn: "<%= asset_path('star-on.png') %>",
-      starOff: "<%= asset_path('star-off.png') %>",
-     half:      false,
-      score: <%= @post.star %>,
-      readOnly: true
-    };
-    raty(elem<%= @post.id %>, opt<%= @post.id %>);
-  </script>

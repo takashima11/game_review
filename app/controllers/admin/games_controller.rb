@@ -15,11 +15,15 @@ class Admin::GamesController < ApplicationController
   end
 
   def show
-    @games = Game.find(params[:id])
-    @post = Post.find(params[:id])
-    @comments = @post.comments
-    @posts = Post.all
-    @customers = Customer.all
+    @game = Game.find(params[:id])
+    
+    
+    #@post = Post.find(params[:id])
+    #@comments = @post.comments
+    #@posts = Post.all
+    @posts = @game.posts
+    
+    #@customers = Customer.all
   end
 
   def edit

@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: 'homes#top'
     # get '/about' => 'homes#about',as: 'about'
-    resources :games, only: [:new, :create]
+    # resources :games, only: [:new, :create]
     get 'games/search' => "games#search"
     resources :games, only: %i[show], params: :item_code
     # get 'games' => 'games#index'

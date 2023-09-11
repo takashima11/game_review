@@ -2,20 +2,20 @@ class Public::GamesController < ApplicationController
   before_action :authenticate_customer!
   GAME_GENRE_ID = 101205
 
-  def new
-    @post = Post.new
-    @game = Game.new
-  end
+  # def new
+  #   @post = Post.new
+  #   @game = Game.new
+  # end
 
-  def create
-    # １.&2. データを受け取り新規登録するためのインスタンス作成
-    game = Game.new(game_params2)
-    post = Post.new(post_params2)
-    # 3. データをデータベースに保存するためのsaveメソッド実行
-    post.save
-    # 4. トップ画面へリダイレクト
-    redirect_to posts_path
-  end
+  # def create
+  #   # １.&2. データを受け取り新規登録するためのインスタンス作成
+  #   game = Game.new(game_params2)
+  #   post = Post.new(post_params2)
+  #   # 3. データをデータベースに保存するためのsaveメソッド実行
+  #   post.save
+  #   # 4. トップ画面へリダイレクト
+  #   redirect_to posts_path
+  # end
 
   def search
     # if params[:keyword]
@@ -99,11 +99,11 @@ class Public::GamesController < ApplicationController
 
 
 
-  def game_params2
-    params.require(:game).permit(:title)
-  end
+  # def game_params2
+  #   params.require(:game).permit(:title)
+  # end
 
-  def post_params2
-    params.permit(:body, :star)
-  end
+  # def post_params2
+  #   params.permit(:body, :star)
+  # end
 end

@@ -1,8 +1,8 @@
 class Admin::PostsController < ApplicationController
   def show
 
-    @games = Game.find(params[:game_id])
     @post = Post.find(params[:id])
+    @games = @post.game
     @comments = @post.comments
   end
 
