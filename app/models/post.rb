@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
 
-  belongs_to :customer
   belongs_to :game
+  belongs_to :customer
   has_many :comments, dependent: :destroy
   has_many :association_post_and_tags, dependent: :destroy
   has_many :tags, through: :association_post_and_tags
